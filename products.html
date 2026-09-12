@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang='si'><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Su-Sa-Ye-Li | Products</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#fdf8f6',
+                            100: '#f2e8e5',
+                            500: '#d97706',
+                            600: '#b45309',
+                            700: '#92400e',
+                            800: '#78350f',
+                            900: '#451a03',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+<link rel="stylesheet" href="assets/site.css"><link rel="stylesheet" href="assets/lang.css">
+<link rel="stylesheet" href="assets/settings.css"></head>
+<body class='bg-stone-50 text-stone-800 font-sans antialiased min-h-screen flex flex-col'>
+<header class="sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b border-stone-200 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <div class="site-logo-icon bg-amber-700 text-white p-2.5 rounded-xl shadow-md">
+                    <i class="fa-solid fa-seedling text-xl"></i>
+                </div>
+                <div>
+                    <span class="text-xl font-bold tracking-tight text-stone-900 block">Su-Sa-Ye-Li</span>
+                    <span class="text-xs font-medium text-amber-700 uppercase tracking-widest">Grains & Spices • Karandeniya</span>
+                </div>
+            </div>
+            
+            <nav class="hidden md:flex items-center space-x-2 nav-attractive">
+                <a href="index.html" class="hover:text-amber-700 transition">මුල් පිටුව</a>
+                <a href="products.html" class="hover:text-amber-700 transition nav-current" aria-current="page">නිෂ්පාදන</a>
+                <a href="about.html" class="hover:text-amber-700 transition">අප ගැන</a>
+                <a href="contact.html" class="hover:text-amber-700 transition">සම්බන්ධ වන්න</a>
+            </nav>
+
+            <div class="flex items-center space-x-4">
+                <button onclick="openAdminModal()" class="hidden sm:inline-flex items-center space-x-2 text-xs font-semibold bg-stone-100 hover:bg-stone-200 text-stone-700 px-3 py-2 rounded-lg transition border border-stone-300">
+                    <i class="fa-solid fa-plus-circle text-amber-700"></i>
+                    <span>අලුත් Product එකක් එකතු කරන්න</span>
+                </button>
+                <a href="https://wa.me/94700000000?text=Hi%20Su-Sa-Ye-Li,%20I%20want%20to%20inquire%20about%20your%20products." target="_blank" class="bg-emerald-600 hover:bg-emerald-700 text-white px-4 py-2.5 rounded-xl font-medium text-sm flex items-center space-x-2 shadow-sm transition">
+                    <i class="fa-brands fa-whatsapp text-lg"></i>
+                    <span class="hidden sm:inline">WhatsApp හරහා විමසන්න</span>
+                </a>
+            </div>
+        </div>
+    </header>
+<section id="products" data-page-section="products" class="py-20 px-4 max-w-7xl mx-auto w-full">
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-12">
+            <div>
+                <span class="text-amber-700 text-sm font-bold uppercase tracking-wider">අපගේ නිෂ්පාදන මාලාව</span>
+                <h2 class="text-3xl font-extrabold text-stone-900 mt-1 sinhala-title">කුළුබඩු සහ ධාන්‍ය වර්ග</h2>
+            </div>
+            <!-- Category Filter Buttons -->
+            <div class="flex flex-wrap gap-2 mt-4 md:mt-0">
+                <button onclick="filterProducts('all')" class="filter-btn active-filter px-4 py-2 rounded-xl text-sm font-semibold bg-amber-700 text-white transition">සියල්ල</button>
+                <button onclick="filterProducts('spices')" class="filter-btn px-4 py-2 rounded-xl text-sm font-semibold bg-stone-200 text-stone-700 hover:bg-stone-300 transition">කුළුබඩු</button>
+                <button onclick="filterProducts('grains')" class="filter-btn px-4 py-2 rounded-xl text-sm font-semibold bg-stone-200 text-stone-700 hover:bg-stone-300 transition">ධාන්‍ය වර්ග</button>
+                <button onclick="filterProducts('others')" class="filter-btn px-4 py-2 rounded-xl text-sm font-semibold bg-stone-200 text-stone-700 hover:bg-stone-300 transition">වෙනත් (මීපැණී)</button>
+            </div>
+        </div>
+
+        <!-- Product Grid Container -->
+        <div id="product-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+            <!-- Products will be dynamically loaded here by JavaScript -->
+        </div>
+    </section>
+
+    
+<footer class="bg-stone-900 text-stone-400 py-12 border-t border-stone-800 mt-20">
+        <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+            <div>
+                <div class="flex items-center space-x-3 mb-4">
+                    <div class="site-logo-icon bg-amber-700 text-white p-2 rounded-lg">
+                        <i class="fa-solid fa-seedling"></i>
+                    </div>
+                    <span class="text-white font-bold text-lg">Su-Sa-Ye-Li Grains & Spices</span>
+                </div>
+                <p class="text-sm text-stone-400">කරන්දෙණිය, මඩකුඹුර, අක්කර 50 ප්‍රදේශයේ සිට පිරිසිදු දේශීය කුළුබඩු සහ ධාන්‍ය වර්ග ඔබ වෙත.</p>
+            </div>
+            <div>
+                <h4 class="text-white font-bold mb-4">ඉක්මන් සබැඳි</h4>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="index.html" class="hover:text-amber-400 transition">මුල් පිටුව</a></li>
+                    <li><a href="products.html" class="hover:text-amber-400 transition nav-current" aria-current="page">නිෂ්පාදන ලැයිස්තුව</a></li>
+                    <li><a href="about.html" class="hover:text-amber-400 transition">අපගේ තොරතුරු</a></li>
+                    <li><a href="contact.html" class="hover:text-amber-400 transition">සම්බන්ධ වන්න</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-white font-bold mb-4">සමාජ ජාල</h4>
+                <div class="flex space-x-3">
+                    <a href="#" class="bg-stone-800 hover:bg-amber-600 text-white w-10 h-10 rounded-xl flex items-center justify-center transition"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#" class="bg-stone-800 hover:bg-amber-600 text-white w-10 h-10 rounded-xl flex items-center justify-center transition"><i class="fa-brands fa-twitter"></i></a>
+                    <a href="#" class="bg-stone-800 hover:bg-amber-600 text-white w-10 h-10 rounded-xl flex items-center justify-center transition"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#" class="bg-stone-800 hover:bg-emerald-600 text-white w-10 h-10 rounded-xl flex items-center justify-center transition"><i class="fa-brands fa-whatsapp"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto px-4 pt-8 border-t border-stone-800 text-center text-xs text-stone-500">
+            &copy; 2026 Su-Sa-Ye-Li Grains and Spices (Karandeniya). All Rights Reserved. Designed for Sri Lankan Local Producers.
+        </div>
+    </footer>
+<div id="product-modal" class="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm hidden items-center justify-center p-4">
+        <div class="bg-white w-full max-w-2xl rounded-3xl shadow-2xl overflow-hidden transform transition-all flex flex-col max-h-[90vh]">
+            <div class="relative h-64 sm:h-72 bg-stone-200">
+                <img id="modal-img" src="" alt="Product Image" class="w-full h-full object-cover">
+                <button onclick="closeProductModal()" class="absolute top-4 right-4 bg-black/60 hover:bg-black text-white w-10 h-10 rounded-full flex items-center justify-center transition">
+                    <i class="fa-solid fa-xmark text-lg"></i>
+                </button>
+                <span id="modal-category" class="absolute bottom-4 left-4 bg-amber-700 text-white text-xs font-semibold px-3 py-1 rounded-lg uppercase tracking-wider"></span>
+            </div>
+            <div class="p-6 sm:p-8 overflow-y-auto space-y-4">
+                <div class="flex justify-between items-start">
+                    <h3 id="modal-title" class="text-2xl font-extrabold text-stone-900"></h3>
+                    <span id="modal-price" class="text-xl font-bold text-amber-700"></span>
+                </div>
+                <p id="modal-desc" class="text-stone-600 text-sm sm:text-base leading-relaxed"></p>
+                
+                <div class="border-t pt-4 space-y-3">
+                    <label class="block text-xs font-bold text-stone-700 uppercase">පැකට් ප්‍රමාණය / ප්‍රමාණය තෝරන්න:</label>
+                    <div id="modal-sizes" class="flex flex-wrap gap-2">
+                        <!-- Size options generated dynamically -->
+                    </div>
+                </div>
+
+                <div class="pt-6 border-t flex flex-col sm:flex-row gap-3">
+                    <button onclick="openPlatformSelector()" class="flex-1 bg-amber-600 hover:bg-amber-700 text-white font-bold py-3.5 px-6 rounded-xl shadow-lg transition flex items-center justify-center space-x-2">
+                        <i class="fa-solid fa-cart-shopping"></i>
+                        <span>ඇණවුම් කිරීමට (Order Now)</span>
+                    </button>
+                    <button onclick="closeProductModal()" class="bg-stone-200 hover:bg-stone-300 text-stone-700 font-medium py-3.5 px-6 rounded-xl transition">
+                        වසන්න
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="platform-modal" class="fixed inset-0 z-60 bg-black/70 backdrop-blur-sm hidden items-center justify-center p-4">
+        <div class="bg-white w-full max-w-md rounded-3xl shadow-2xl p-6 sm:p-8 space-y-6 text-center">
+            <div class="w-16 h-16 bg-amber-100 text-amber-700 rounded-2xl mx-auto flex items-center justify-center text-2xl shadow-inner">
+                <i class="fa-solid fa-paper-plane"></i>
+            </div>
+            <div>
+                <h3 class="text-2xl font-bold text-stone-900">ඇණවුම් කළ යුතු වේදිකාව (Platform) තෝරන්න</h3>
+                <p class="text-stone-500 text-sm mt-1">ඔබට පහසුම සන්නිවේදන මාධ්‍යය ක්ලික් කරන්න. ඔබ තෝරාගත් නිෂ්පාදන විස්තරය සමඟ කෙලින්ම අප වෙත පණිවිඩයක් ලැබෙනු ඇත.</p>
+            </div>
+            <div class="space-y-3">
+                <button onclick="sendOrder('whatsapp')" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-semibold py-3.5 px-4 rounded-xl flex items-center justify-center space-x-3 shadow-md transition">
+                    <i class="fa-brands fa-whatsapp text-2xl"></i>
+                    <span>WhatsApp හරහා ඇණවුම් කරන්න</span>
+                </button>
+                <button onclick="sendOrder('messenger')" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3.5 px-4 rounded-xl flex items-center justify-center space-x-3 shadow-md transition">
+                    <i class="fa-brands fa-facebook-messenger text-2xl"></i>
+                    <span>Messenger හරහා ඇණවුම් කරන්න</span>
+                </button>
+                <button onclick="sendOrder('sms')" class="w-full bg-stone-700 hover:bg-stone-800 text-white font-semibold py-3.5 px-4 rounded-xl flex items-center justify-center space-x-3 shadow-md transition">
+                    <i class="fa-solid fa-sms text-2xl"></i>
+                    <span>SMS / දුරකථන ඇමතුම</span>
+                </button>
+            </div>
+            <button onclick="closePlatformSelector()" class="text-stone-500 hover:text-stone-800 text-sm font-semibold pt-2">
+                ඉවත් වන්න (Cancel)
+            </button>
+        </div>
+    </div>
+
+    <div id="admin-modal" class="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm hidden items-center justify-center p-4">
+        <div class="bg-white w-full max-w-lg rounded-3xl shadow-2xl p-6 sm:p-8 space-y-6">
+            <div class="flex justify-between items-center border-b pb-4">
+                <h3 class="text-xl font-bold text-stone-900">අලුත් නිෂ්පාදනයක් එකතු කරන්න (Dynamic Add)</h3>
+                <button onclick="closeAdminModal()" class="text-stone-400 hover:text-stone-700"><i class="fa-solid fa-xmark text-xl"></i></button>
+            </div>
+            <form id="addProductForm" onsubmit="handleAddNewProduct(event)" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-bold text-stone-700 uppercase mb-1">නිෂ්පාදනයේ නම (Product Name):</label>
+                    <input type="text" id="new-name" required class="w-full px-4 py-2.5 rounded-xl border border-stone-300 focus:outline-none focus:ring-2 focus:ring-amber-600 text-sm" placeholder="උදා: රතු නාඩුල් / මෙනේරි පැකට්">
+                </div>
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-bold text-stone-700 uppercase mb-1">වර්ගීකරණය (Category):</label>
+                        <select id="new-cat" class="w-full px-4 py-2.5 rounded-xl border border-stone-300 focus:outline-none focus:ring-2 focus:ring-amber-600 text-sm">
+                            <option value="grains">ධාන්‍ය වර්ග (Grains)</option>
+                            <option value="spices">කුළුබඩු (Spices)</option>
+                            <option value="others">වෙනත් (Others)</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-stone-700 uppercase mb-1">මිල (Price):</label>
+                        <input type="text" id="new-price" required class="w-full px-4 py-2.5 rounded-xl border border-stone-300 focus:outline-none focus:ring-2 focus:ring-amber-600 text-sm" placeholder="උදා: Rs. 450 / 500g">
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-stone-700 uppercase mb-1">රූපයේ සබැඳිය (Image URL):</label>
+                    <input type="url" id="new-img" required class="w-full px-4 py-2.5 rounded-xl border border-stone-300 focus:outline-none focus:ring-2 focus:ring-amber-600 text-sm" placeholder="https://images.unsplash.com/...">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-stone-700 uppercase mb-1">විස්තරය (Description):</label>
+                    <textarea id="new-desc" rows="3" required class="w-full px-4 py-2.5 rounded-xl border border-stone-300 focus:outline-none focus:ring-2 focus:ring-amber-600 text-sm" placeholder="නිෂ්පාදනය පිළිබඳ විස්තරය..."></textarea>
+                </div>
+                <button type="submit" class="w-full bg-amber-600 hover:bg-amber-700 text-white font-bold py-3 rounded-xl shadow-md transition">
+                    නිෂ්පාදනය වෙබ් අඩවියට එකතු කරන්න
+                </button>
+            </form>
+        </div>
+    </div>
+
+    
+<script>
+        // Initial Products Database
+        let products = JSON.parse(localStorage.getItem('susayeli_products_v2') || 'null') || [
+            {
+                id: 1,
+                name: "දේශීය කුරක්කන් (Kurakkan)",
+                category: "grains",
+                price: "Rs. 380 / 500g",
+                img: "https://images.unsplash.com/photo-1586201375761-83865001e31c?auto=format&fit=crop&q=80&w=600",
+                desc: "කරන්දෙණිය අක්කර 50 ප්‍රදේශයේ සාරවත් බිම්වල වගා කරන ලද, පෝෂ්‍යදායී සහ පිරිසිදු 100% දේශීය කුරක්කන් පිටි හෝ ඇට.",
+                sizes: ["250g", "500g", "1kg", "තොග වශයෙන් (Wholesale)"]
+            },
+            {
+                id: 2,
+                name: "මෙනේරි (Meneri)",
+                category: "grains",
+                price: "Rs. 350 / 500g",
+                img: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&q=80&w=600",
+                desc: "ශරීර සෞඛ්‍යයට ඉතා ගුණදායක පාරම්පරික මෙනේරි ධාන්‍ය වර්ගය, උසස්ම තත්ත්වයෙන් පැකට් කර ඇත.",
+                sizes: ["500g", "1kg", "තොග වශයෙන් (Wholesale)"]
+            },
+            {
+                id: 3,
+                name: "පිරිසිදු තුනපහ කුඩු (Thunapaha)",
+                category: "spices",
+                price: "Rs. 450 / 250g",
+                img: "https://images.unsplash.com/photo-1596040033229-a9821ebd058d?auto=format&fit=crop&q=80&w=600",
+                desc: "රටකජු, කොත්තමල්ලි, සහ කුළුබඩු වර්ග නියමිත අනුපාතයට සකස් කර බැද අඹාගත් සුවඳවත් තුනපහ කුඩු.",
+                sizes: ["100g", "250g", "500g", "1kg"]
+            },
+            {
+                id: 4,
+                name: "කරසැර මිරිස් කුඩු (Miris)",
+                category: "spices",
+                price: "Rs. 550 / 250g",
+                img: "https://images.unsplash.com/photo-1588854337236-6889d631faa8?auto=format&fit=crop&q=80&w=600",
+                desc: "හොඳින් අව්වේ වියළාගත් උසස් තත්ත්වයේ වියළි මිරිස් අඹා සකස් කළ කටට රුචි මිරිස් කුඩු.",
+                sizes: ["100g", "250g", "500g", "1kg"]
+            },
+            {
+                id: 5,
+                name: "කරන්දෙණිය ගම්මිරිස් (Gam Miris)",
+                category: "spices",
+                price: "Rs. 750 / 250g",
+                img: "https://images.unsplash.com/photo-1532336414038-cf19250c5756?auto=format&fit=crop&q=80&w=600",
+                desc: "සුවඳින් සහ සැරින් අනූන උසස්ම තත්ත්වයේ කළු ගම්මිරිස් ඇට සහ කුඩු.",
+                sizes: ["100g", "250g", "500g", "1kg"]
+            },
+            {
+                id: 6,
+                name: "නියම කුරුඳු පොතු (Kurundu)",
+                category: "spices",
+                price: "Rs. 600 / 100g",
+                img: "https://images.unsplash.com/photo-1509358271058-acd22cc93898?auto=format&fit=crop&q=80&w=600",
+                desc: "ශ්‍රී ලංකාවට ආවේණික ලෝක ප්‍රසිද්ධ සිංහල කුරුඳු ප්‍රභේදය.",
+                sizes: ["100g", "250g", "500g"]
+            },
+            {
+                id: 7,
+                name: "පිරිසිදු මීපැණී (Mee Peni)",
+                category: "others",
+                price: "Rs. 1,500 / 750ml",
+                img: "https://images.unsplash.com/photo-1587049352847-4a222e784d38?auto=format&fit=crop&q=80&w=600",
+                desc: "වනාන්තරයෙන් සහ ස්වභාවික මීමැසි පාලනයෙන් ලබාගත් පිරිසිදු මීපැණී බෝතලයක්.",
+                sizes: ["375ml", "750ml"]
+            }
+        ];
+
+        let currentSelectedProduct = null;
+        let selectedSize = '';
+
+        // Render Products
+        function renderProducts(filter = 'all') {
+            const grid = document.getElementById('product-grid');
+            if (!grid) return;
+            grid.innerHTML = '';
+
+            const filtered = filter === 'all' ? products : products.filter(p => p.category === filter);
+
+            if (filtered.length === 0) {
+                grid.innerHTML = `<div class="col-span-full text-center py-12 text-stone-500">මෙම කාණ්ඩය යටතේ නිෂ්පාදන නොමැත.</div>`;
+                return;
+            }
+
+            filtered.forEach(p => {
+                const card = document.createElement('div');
+                card.className = "bg-white rounded-2xl overflow-hidden border border-stone-200 shadow-sm hover:shadow-xl transition flex flex-col justify-between group cursor-pointer";
+                card.onclick = () => openProductModal(p.id);
+                card.innerHTML = `
+                    <div class="relative h-52 overflow-hidden bg-stone-100">
+                        <img src="${p.img}" alt="${p.name}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                        <span class="absolute top-3 right-3 bg-white/90 backdrop-blur-sm text-stone-900 text-xs font-bold px-2.5 py-1 rounded-lg shadow-sm uppercase">${p.category}</span>
+                    </div>
+                    <div class="p-5 space-y-2 flex-1 flex flex-col justify-between">
+                        <div>
+                            <h3 class="font-bold text-stone-900 text-lg group-hover:text-amber-700 transition">${p.name}</h3>
+                            <p class="text-stone-500 text-xs line-clamp-2 mt-1">${p.desc}</p>
+                        </div>
+                        <div class="flex items-center justify-between pt-4 border-t border-stone-100">
+                            <span class="text-amber-700 font-extrabold text-base">${p.price}</span>
+                            <span class="text-xs font-semibold bg-amber-50 text-amber-800 px-3 py-1.5 rounded-xl border border-amber-200 group-hover:bg-amber-700 group-hover:text-white transition">විස්තර බලන්න &rarr;</span>
+                        </div>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        // Filter Function
+        function filterProducts(category) {
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.classList.remove('bg-amber-700', 'text-white');
+                btn.classList.add('bg-stone-200', 'text-stone-700');
+            });
+            event.target.classList.remove('bg-stone-200', 'text-stone-700');
+            event.target.classList.add('bg-amber-700', 'text-white');
+            renderProducts(category);
+        }
+
+        // Open Product Detail Modal
+        function openProductModal(id) {
+            currentSelectedProduct = products.find(p => p.id === id);
+            if (!currentSelectedProduct) return;
+
+            document.getElementById('modal-img').src = currentSelectedProduct.img;
+            document.getElementById('modal-title').textContent = currentSelectedProduct.name;
+            document.getElementById('modal-category').textContent = currentSelectedProduct.category;
+            document.getElementById('modal-price').textContent = currentSelectedProduct.price;
+            document.getElementById('modal-desc').textContent = currentSelectedProduct.desc;
+
+            const sizesContainer = document.getElementById('modal-sizes');
+            sizesContainer.innerHTML = '';
+            selectedSize = currentSelectedProduct.sizes[0]; // default first size
+
+            currentSelectedProduct.sizes.forEach((size, idx) => {
+                const btn = document.createElement('button');
+                btn.className = `px-4 py-2 rounded-xl text-xs font-bold border transition ${idx === 0 ? 'bg-amber-700 text-white border-amber-700' : 'bg-stone-50 text-stone-700 border-stone-300 hover:bg-stone-100'}`;
+                btn.textContent = size;
+                btn.onclick = (e) => {
+                    e.stopPropagation();
+                    document.querySelectorAll('#modal-sizes button').forEach(b => {
+                        b.classList.remove('bg-amber-700', 'text-white', 'border-amber-700');
+                        b.classList.add('bg-stone-50', 'text-stone-700', 'border-stone-300');
+                    });
+                    btn.classList.remove('bg-stone-50', 'text-stone-700', 'border-stone-300');
+                    btn.classList.add('bg-amber-700', 'text-white', 'border-amber-700');
+                    selectedSize = size;
+                };
+                sizesContainer.appendChild(btn);
+            });
+
+            const modal = document.getElementById('product-modal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        function closeProductModal() {
+            const modal = document.getElementById('product-modal');
+            modal.classList.remove('flex');
+            modal.classList.add('hidden');
+        }
+
+        // Platform Selector Modal logic
+        function openPlatformSelector() {
+            if (!currentSelectedProduct) return;
+            closeProductModal();
+            const modal = document.getElementById('platform-modal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        function closePlatformSelector() {
+            const modal = document.getElementById('platform-modal');
+            modal.classList.remove('flex');
+            modal.classList.add('hidden');
+        }
+
+        // Send Order to Selected Platform with Pre-filled Message
+        function sendOrder(platform) {
+            if (!currentSelectedProduct) return;
+
+            const message = `Hi Su-Sa-Ye-Li Grains & Spices, මට මේ නිෂ්පාදනය ඇණවුම් කිරීමට අවශ්‍යයි:%0A%0A📦 Product: ${currentSelectedProduct.name}%0A⚖️ Size/Quantity: ${selectedSize}%0A💰 Price: ${currentSelectedProduct.price}%0A%0Aකරුණාකර වැඩි විස්තර ලබා දෙන්න. (කරන්දෙණිය / ලිපිනය: අක්කර 50)`;
+
+            let url = '';
+            if (platform === 'whatsapp') {
+                // WhatsApp URL (replace with actual business phone number)
+                url = `https://wa.me/94700000000?text=${message}`;
+            } else if (platform === 'messenger') {
+                // Messenger URL (replace with actual facebook page username)
+                url = `https://m.me/susayeligrains?text=${encodeURIComponent(message.replace(/%0A/g, '\n'))}`;
+            } else if (platform === 'sms') {
+                url = `sms:+94700000000?body=${encodeURIComponent(message.replace(/%0A/g, '\n'))}`;
+            }
+
+            if (url) {
+                window.open(url, '_blank');
+            }
+            closePlatformSelector();
+        }
+
+        // Admin Modal Functions for Dynamic Product Addition
+        function openAdminModal(){ location.href="login.html"; }
+
+        function closeAdminModal() {
+            const modal = document.getElementById('admin-modal');
+            modal.classList.remove('flex');
+            modal.classList.add('hidden');
+        }
+
+        function handleAddNewProduct(event) {
+            event.preventDefault();
+            const name = document.getElementById('new-name').value;
+            const category = document.getElementById('new-cat').value;
+            const price = document.getElementById('new-price').value;
+            const img = document.getElementById('new-img').value;
+            const desc = document.getElementById('new-desc').value;
+
+            const newProd = {
+                id: products.length + 1,
+                name,
+                category,
+                price,
+                img,
+                desc,
+                sizes: ["250g", "500g", "1kg", "තොග වශයෙන්"]
+            };
+
+            products.unshift(newProd);
+            localStorage.setItem('susayeli_products_v2', JSON.stringify(products));
+            if(document.getElementById('product-grid')) renderProducts('all');
+            renderAdminList();
+            document.getElementById('addProductForm').reset();
+            closeAdminModal();
+        }
+
+        // Initialize on Load
+        window.onload = function() {
+            renderProducts('all');
+        }
+    
+function renderAdminList(){
+ const el=document.getElementById('admin-product-list'); if(!el)return;
+ el.innerHTML=products.map(p=>`<div class="flex items-center gap-3 p-3 border border-stone-200 rounded-xl">
+ <img src="${p.img}" onerror="this.src='assets/images/placeholder.svg'" class="w-14 h-14 rounded-lg object-cover bg-stone-100">
+ <div class="flex-1"><b class="text-sm block">${p.name}</b><small class="text-xs text-stone-500">${p.category} · ${p.price}</small></div>
+ </div>`).join('');
+}
+function sendContactForm(e){
+ e.preventDefault();
+ const msg=`Hi Su-Sa-Ye-Li, මගේ නම ${document.getElementById('contactName').value}. දුරකථන: ${document.getElementById('contactPhone').value}. පණිවිඩය: ${document.getElementById('contactMsg').value}`;
+ window.open('https://wa.me/94700000000?text='+encodeURIComponent(msg),'_blank');
+}
+</script>
+<script src="assets/lang.js"></script><button type="button" class="global-lang-btn" id="globalLangBtn" onclick="togglePageLanguage()">English</button><script src="assets/page-images.js"></script>
+<script src="assets/settings.js"></script></body></html>

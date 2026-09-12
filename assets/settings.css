@@ -1,0 +1,36 @@
+/* User display settings: isolated widget only. */
+:root{--user-font-scale:1;}
+html{font-size:calc(16px * var(--user-font-scale));}
+.user-settings-widget{position:fixed;left:18px;bottom:18px;z-index:90;font-family:Inter,system-ui,sans-serif}
+.user-settings-gear{width:46px;height:46px;border:1px solid #d8dfd5;border-radius:14px;background:#fff;color:#173b27;box-shadow:0 8px 24px rgba(23,59,39,.14);cursor:pointer;font-size:20px;display:flex;align-items:center;justify-content:center;transition:.2s}
+.user-settings-gear:hover{transform:translateY(-2px);box-shadow:0 12px 28px rgba(23,59,39,.18)}
+.user-settings-panel{display:none;position:absolute;left:0;bottom:56px;width:300px;background:#fff;border:1px solid #e7e5e4;border-radius:18px;box-shadow:0 20px 44px rgba(28,25,23,.18);padding:15px}
+.user-settings-panel.open{display:block}
+.user-settings-panel h3{margin:0 0 12px;font-size:15px;color:#1c1917}
+.user-settings-label{font-size:10px;font-weight:800;color:#78716c;text-transform:uppercase;letter-spacing:.7px;margin:12px 0 7px}
+.user-settings-grid{display:grid;grid-template-columns:1fr 1fr;gap:7px}
+.user-settings-btn{border:1px solid #e7e5e4;background:#fff;color:#44403c;padding:8px 9px;border-radius:10px;cursor:pointer;font-size:11px;font-weight:700;text-align:left}
+.user-settings-btn:hover{border-color:#b45309;color:#b45309;background:#fffaf5}
+.user-settings-btn.active{border-color:#b45309;background:#fff7ed;color:#9a3412}
+.user-settings-range{width:100%;accent-color:#b45309}
+.user-settings-size-row{display:flex;align-items:center;gap:9px}
+.user-settings-size-value{min-width:42px;text-align:right;font-size:11px;font-weight:800;color:#57534e}
+@media(max-width:560px){.user-settings-widget{left:12px;bottom:12px}.user-settings-panel{width:270px}.user-settings-gear{width:44px;height:44px}}
+/* Theme overrides for existing page components. These only activate when the user chooses a theme. */
+body.user-theme-dark{background:var(--user-bg)!important;color:var(--user-text)!important}
+body.user-theme-dark .bg-white,body.user-theme-dark .bg-stone-50,body.user-theme-dark .bg-stone-100,body.user-theme-dark .bg-amber-50{background-color:var(--user-surface)!important}
+body.user-theme-dark .text-stone-900,body.user-theme-dark .text-stone-800,body.user-theme-dark .text-stone-700,body.user-theme-dark .text-gray-900,body.user-theme-dark .text-gray-800{color:var(--user-text)!important}
+body.user-theme-dark .text-stone-500,body.user-theme-dark .text-stone-600,body.user-theme-dark .text-gray-500,body.user-theme-dark .text-gray-600{color:color-mix(in srgb,var(--user-text) 65%,transparent)!important}
+body.user-theme-dark .border-stone-200,body.user-theme-dark .border-stone-300,body.user-theme-dark .border-gray-200{border-color:color-mix(in srgb,var(--user-text) 18%,transparent)!important}
+body.user-theme-dark input,body.user-theme-dark textarea,body.user-theme-dark select{background:var(--user-surface)!important;color:var(--user-text)!important;border-color:color-mix(in srgb,var(--user-text) 20%,transparent)!important}
+body.user-theme-dark .nav-attractive a:not(.nav-current):not([aria-current=page]){background:var(--user-surface)!important;color:var(--user-text)!important;border-color:color-mix(in srgb,var(--user-accent) 55%,transparent)!important}
+body.user-theme-dark .global-lang-btn{background:var(--user-surface)!important;color:var(--user-accent)!important}
+body.user-theme-dark .user-settings-gear{background:var(--user-surface)!important;color:var(--user-accent)!important}
+
+body:not(.user-theme-dark) .hero-mini{background:linear-gradient(120deg,var(--user-hero),var(--user-accent-2) 55%,var(--user-hero))!important}
+body.user-theme-dark .hero-mini{background:linear-gradient(120deg,var(--user-hero),var(--user-accent-2) 55%,var(--user-bg))!important}
+/* Accent-aware controls across light themes. */
+body.user-theme-active .user-settings-btn.active{border-color:var(--user-accent)!important;color:var(--user-accent)!important;background:color-mix(in srgb,var(--user-accent) 10%,transparent)!important}
+body.user-theme-active .nav-attractive a:hover{background:color-mix(in srgb,var(--user-accent) 14%,transparent)!important;color:var(--user-accent)!important;border-color:var(--user-accent)!important}
+body.user-theme-active .nav-attractive a.nav-current,body.user-theme-active .nav-attractive a[aria-current=page]{background:var(--user-accent)!important;border-color:var(--user-accent)!important;color:#fff!important}
+body.user-theme-active .global-lang-btn:hover{background:var(--user-accent)!important;color:#fff!important}

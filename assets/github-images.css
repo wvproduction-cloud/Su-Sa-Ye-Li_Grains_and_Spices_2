@@ -1,0 +1,15 @@
+
+/* GitHub image upload additions */
+.github-image-config{background:#fff;border:1px solid #e7e5e4;border-radius:24px;box-shadow:0 10px 28px rgba(28,25,23,.06);padding:28px;margin:32px auto 0}
+.github-image-config h2{font-size:1.25rem;font-weight:800;color:#1c1917}
+.github-settings-grid{display:grid;grid-template-columns:1fr;gap:12px;margin-top:18px}
+.github-field label{display:block;font-size:11px;font-weight:800;color:#44403c;margin-bottom:6px}
+.github-field input{width:100%;padding:10px 12px;border:1px solid #d6d3d1;border-radius:12px;font-size:13px}
+.github-config-actions{display:flex;flex-wrap:wrap;gap:9px;margin-top:16px}
+.github-config-actions button{border:1px solid #d6d3d1;border-radius:11px;padding:10px 13px;font-size:12px;font-weight:800;cursor:pointer;background:#fff}
+.github-config-actions .primary{background:#173b27;color:#fff;border-color:#173b27}
+.github-github-note{margin-top:10px;color:#78716c;font-size:11px;line-height:1.55}
+.github-upload-btn{border:1px solid #d6d3d1;background:#fff;padding:7px 10px;border-radius:9px;font-size:10px;font-weight:800;color:#173b27;cursor:pointer}
+.github-upload-btn:hover{background:#f0fdf4;border-color:#86efac}
+.github-upload-status{font-size:10px;font-weight:800;color:#047857}
+@media(min-width:700px){.github-settings-grid{grid-template-columns:repeat(2,minmax(0,1fr));}}
